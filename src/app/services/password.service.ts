@@ -1,11 +1,11 @@
-import { hash, verify } from '@node-rs/argon2';
+import { hash, verify } from "@node-rs/argon2";
 
 // Configuration for password hashing
 const hashingOptions = {
-	memoryCost: 19456,
-	timeCost: 2,
-	outputLen: 32,
-	parallelism: 1,
+  memoryCost: 19456,
+  timeCost: 2,
+  outputLen: 32,
+  parallelism: 1,
 };
 
 /**
@@ -15,10 +15,13 @@ const hashingOptions = {
  * @returns {Promise<string>} - The hashed password.
  */
 export const hashPassword = async (password: string): Promise<string> => {
-	if (!password) {
-		throw new Error('Password is required to hash.');
-	}
-	return hash(password, hashingOptions);
+  console.log(password);
+  if (!password) {
+    throw new Error("Password is required to hash.");
+  }
+  const hashedPass = await hash(password, hashingOptions);
+  console.log(hashedPass);
+  return hashedPass;
 };
 
 /**
@@ -29,11 +32,12 @@ export const hashPassword = async (password: string): Promise<string> => {
  * @returns {Promise<boolean>} - Whether the password is valid.
  */
 export const verifyPassword = async (
-	dbPassword: string,
-	formPassword: string
+  dbPassword: string,
+  formPassword: string,
+  options?: object
 ): Promise<boolean> => {
-	if (!dbPassword || !formPassword) {
-		throw new Error('Both hashed and plaintext passwords are required.');
-	}
-	return verify(dbPassword, formPassword, hashingOptions);
+  if (!dbPassword || !formPassword) {
+    throw new Error("Both hashed and plaintext passwords are required.");
+  }
+  return verify(dbPassword, formPassword, hashingOptions);
 };

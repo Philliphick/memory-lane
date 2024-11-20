@@ -1,7 +1,14 @@
 "use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+
+  if (session) {
+    return <h1>We only gone and done it boys</h1>;
+  }
+
   return (
     <>
       <main className="flex w-screen h-screen justify-between">

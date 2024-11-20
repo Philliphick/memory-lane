@@ -24,6 +24,7 @@ const Login = () => {
     setIsSubmitting(true); // Disable submit button
 
     try {
+      console.log(password)
       const res = await signIn("credentials", {
         redirect: false, // Don't automatically redirect after login
         email,

@@ -6,7 +6,7 @@ import { verifyPassword } from "@/app/services/password.service";
 const prisma = new PrismaClient();
 
 // Configure NextAuth
-const authOptions = {
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -24,14 +24,17 @@ const authOptions = {
           where: { email: credentials.email },
         });
 
+        console.log("user password", user.password);
         if (!user) {
           throw new Error("Invalid email or password.");
         }
 
         const isValid = await verifyPassword(
-          credentials.password,
-          user.password
+          user.password,
+          credentials.password
         );
+
+        console.log("is valid:", isValid);
 
         if (!isValid) {
           throw new Error("Invalid email or password.");
@@ -59,5 +62,6 @@ const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-// Export named handler
+// Export named handler for POST and GET
 export const POST = (req, res) => NextAuth(req, res, authOptions);
+export const GET = (req, res) => NextAuth(req, res, authOptions);

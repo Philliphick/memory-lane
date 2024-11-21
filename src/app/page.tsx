@@ -1,13 +1,15 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Layout from "./layout";
+
 
 export default function Home() {
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
 
-  if (session) {
-    return <h1>We only gone and done it boys</h1>;
-  }
+  // if (session) {
+  //   return <h1>We only gone and done it</h1>;
+  // }
 
   return (
     <>

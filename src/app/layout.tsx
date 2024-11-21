@@ -8,34 +8,31 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 // Define the expected props for the layout
 interface LayoutProps {
   children: React.ReactNode;
-  session: any; // You can type this based on your session shape, or use `any` for simplicity
+  session: Object; // You can type this based on your session shape, or use `any` for simplicity
 }
 
-// Fetch session on the server side using `getServerSession`
-export async function generateMetadata() {
-  const session = await getServerSession(authOptions);
-  return {
-    props: {
-      session,
-    },
-  };
-}
 
 const Layout: React.FC = ({ children, session }) => {
+
+  let theme = '-a'
+
+
   return (
-    <SessionProvider session={session}>
+    // <SessionProvider session={session}>
       <html lang="en">
-        <body className=" bg-gray-100 text-gray-900">
-          <div className="flex flex-col min-h-screen">
+        {/* <body className=" bg-gray-100 text-gray-900 "> */}
+        <body className={`sm:min-w-md md:min-w-xl${theme}`}>
+
+          <main className="flex flex-col min-h-screen max-w-full">
             <Navbar />
 
             <main className="flex-grow">{children}</main>
 
             <Footer />
-          </div>
+          </main>
         </body>
       </html>
-    </SessionProvider>
+  
   );
 };
 

@@ -3,17 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #ABAAAA;
   --foreground: #171717;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+.theme-a {
+  background-color: #677598;
+  color: white;
 }
 
 body {

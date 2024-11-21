@@ -2,6 +2,7 @@
 import React, { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import TextInput from "@/app/components/ui/TextInput";
 
 const Login = () => {
   const [error, setError] = useState<string | null>(null);
@@ -54,12 +55,20 @@ const Login = () => {
         <label htmlFor="email">Email</label>
         <input id="email" type="email" name="email" required />
 
+        <TextInput
+          labelText={"Email"}
+          inputType={"email"}
+          inputName={"name"}
+        />
+
         <label htmlFor="password">Password</label>
         <input id="password" type="password" name="password" required />
 
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Logging in..." : "Login"}
         </button>
+
+      
       </form>
     </div>
   );

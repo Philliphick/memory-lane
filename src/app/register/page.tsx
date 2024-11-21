@@ -44,7 +44,7 @@ const Register = () => {
         console.log("User created:", data);
 
         // Redirect to login page or dashboard after successful registration
-        router.push("/auth/login");
+        router.push("/login");
       } else {
         const data = await response.json();
         setError(data.error || "An error occurred during registration.");
@@ -64,7 +64,7 @@ const Register = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8 mx-auto place-items-center min-h-screen justify-center -translate-y-10 max-w-screen">
+    <div className="flex flex-col gap-8 mx-auto place-items-center justify-center -translate-y-10 max-w-screen">
       <h2 className="text-3xl capitalize">Make an account</h2>
       {error && <div style={{ color: "red" }}>{error}</div>}
 
@@ -92,7 +92,7 @@ const Register = () => {
         >
           {isSubmitting ? "Registering..." : "Register"}
         </button>
-        <ButtonLink buttonLabel={"Sign in"} href="/auth/login" />
+        <ButtonLink buttonLabel={"Sign in"} href="/login" />
       </form>
     </div>
   );

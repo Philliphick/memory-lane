@@ -48,7 +48,7 @@ const Login = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8 mx-auto place-items-center min-h-screen justify-center -translate-y-10 max-w-screen">
+    <div className="flex flex-col gap-8 mx-auto place-items-center justify-center -translate-y-10 max-w-screen">
       <h2 className="text-3xl capitalize">Login</h2>
       {error && <div style={{ color: "red" }}>{error}</div>}
 
@@ -71,7 +71,7 @@ const Login = () => {
         >
           {isSubmitting ? "Logging in..." : "Login"}
         </button>
-        <ButtonLink buttonLabel={"Register"} href="/auth/register" />
+        <ButtonLink buttonLabel={"Register"} href="/register" />
       </form>
     </div>
   );

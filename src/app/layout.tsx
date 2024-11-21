@@ -26,7 +26,7 @@ const Layout: React.FC = ({ children, session }) => {
           <main className="flex flex-col min-h-screen max-w-full">
             <Navbar />
 
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow place-content-center">{children}</main>
 
             <Footer />
           </main>

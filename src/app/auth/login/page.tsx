@@ -3,6 +3,7 @@ import React, { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import TextInput from "@/app/components/ui/TextInput";
+import ButtonLink from "@/app/components/ui/ButtonLink";
 
 const Login = () => {
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +26,7 @@ const Login = () => {
     setIsSubmitting(true); // Disable submit button
 
     try {
-      console.log(password)
+      console.log(password);
       const res = await signIn("credentials", {
         redirect: false, // Don't automatically redirect after login
         email,
@@ -47,28 +48,30 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="flex flex-col gap-8 mx-auto place-items-center min-h-screen justify-center -translate-y-10 max-w-screen">
+      <h2 className="text-3xl capitalize">Login</h2>
       {error && <div style={{ color: "red" }}>{error}</div>}
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" name="email" required />
-
+      <form onSubmit={handleSubmit} className="flex flex-col min-w-72">
         <TextInput
           labelText={"Email"}
           inputType={"email"}
-          inputName={"name"}
+          inputName={"email"}
+        />
+        <TextInput
+          labelText={"Password"}
+          inputType={"password"}
+          inputName={"password"}
         />
 
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" name="password" required />
-
-        <button type="submit" disabled={isSubmitting}>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="border-2 border-gray-700 m-2 p-1 bg-slate-300 hover:bg-slate-500 hover:text-gray-200 transition-colors"
+        >
           {isSubmitting ? "Logging in..." : "Login"}
         </button>
-
-      
+        <ButtonLink buttonLabel={"Register"} href="/auth/register" />
       </form>
     </div>
   );

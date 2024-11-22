@@ -1,19 +1,14 @@
-"use client";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+// page.tsx
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route"; // Adjust path to your auth options
 import Layout from "./layout";
-import Link from "next/link";
 
-
-export default function Home() {
-  // const { data: session, status } = useSession();
-
-  // if (session) {
-  //   return <h1>We only gone and done it</h1>;
-  // }
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  // console.log(session.user.id)
 
   return (
-    <>
+    <Layout session={session}>
       <main className="flex w-screen h-screen justify-between">
         <section className="flex flex-col justify-start mx-auto mt-12 gap-8 p-16">
           <header>
@@ -38,9 +33,9 @@ export default function Home() {
           <img
             className="object-cover h-full"
             src="https://img.freepik.com/free-photo/travel-composition-with-compass-blank-notebook_23-2147604726.jpg?t=st=1732112233~exp=1732115833~hmac=8bbf3cdf4cb78c96460e0507d89fb0adcaec502c05953c39b132c5a4364ebbce&w=996"
-          ></img>
+          />
         </div>
       </main>
-    </>
+    </Layout>
   );
 }

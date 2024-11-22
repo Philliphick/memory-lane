@@ -44,10 +44,7 @@ export async function POST(req: Request) {
 export async function POST_LOGOUT() {
   try {
     // Logout logic is handled by NextAuth.js
-    return NextResponse.json(
-      { message: "Logout successful" },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Logout successful" }, { status: 200 });
   } catch (error) {
     console.error("Error logging out user:", error);
     return NextResponse.json(

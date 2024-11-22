@@ -1,31 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model User {
-  id    Int     @id @default(autoincrement())
-  name  String
-  email      String   @unique
-  password   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  posts Post[]  // Relation to Post model
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  email     String   @unique
+  password  String
+  updatedAt DateTime @updatedAt
+  posts     Post[]
 }
 
 model Post {
   id      Int    @id @default(autoincrement())
   title   String
   content String
-  userId  Int    // Foreign key to User
+  userId  Int
   user    User   @relation(fields: [userId], references: [id])
 }
-
-
-
-// edit the schema for posts - figure out the data structure for the capsules 
-

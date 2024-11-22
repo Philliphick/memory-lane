@@ -41,7 +41,7 @@ export const authOptions = {
         }
 
         console.log("User found:", user);
-        return { id: user.id.toString(), name: user.name, email: user.email };
+        return { id: user.id, name: user.name, email: user.email };
       },
     }),
   ],

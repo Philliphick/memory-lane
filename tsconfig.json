@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/api/posts.js",
+    "src/app/api/posts/route.ts",
     "src/app/register/page.tsx",
     "src/app/api/auth/[...nextauth]/route.ts"
   ],

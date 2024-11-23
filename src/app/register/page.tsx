@@ -50,7 +50,6 @@ const Register = () => {
         setError(data.error || "An error occurred during registration.");
       }
     } catch (err) {
-      console.log("oops!!", err);
       setError("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false); // Re-enable submit button
